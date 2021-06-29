@@ -1,6 +1,6 @@
 <template>
 <div class="grid-container">
-  <div v-for="contact in contactsList" :key="contact._id" @click="displayFullInfo(contact)">
+  <div v-for="(contact, index) in contactsList" :key="contact._id" @click="displayFullInfo(contact, index)">
     <contact-item :contact="contact"></contact-item>
   </div>
 </div>
@@ -17,14 +17,11 @@ export default {
     ContactItem
   },
   data(){
-    return{
-      chosenContact: null
-    }
+    return{}
   },
   methods: {
-    displayFullInfo(contact){
-      console.log("herr", contact)
-      this.chosenContact = contact
+    displayFullInfo(contact, index){
+      this.$emit('openContactModal', {contact, index})
     }
   }
 }
@@ -34,11 +31,12 @@ export default {
   .grid-container{
     display: grid;
     grid-template-columns: 30% 30% 30%;
-    grid-gap: 5%;
+    grid-gap: 10% 5%;
   }
   @media only screen and (max-width: 768px) {
     .grid-container {
       grid-template-columns: 95%;
+      grid-gap: 5%;
     }
   }
 </style>

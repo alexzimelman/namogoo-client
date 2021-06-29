@@ -1,11 +1,17 @@
 <template>
-<div class="each-contact" @click="displayFullInfo(contact)">
+<div class="each-contact">
   <div>
     <img :src="contact.picture.medium" :class="contact.gender"/>
   </div>
-  <div>
+  <div class="item-label">
     {{setContactLabel}}
   </div>
+  <div class="item-note">
+    click for more details
+  </div>
+<!--  <div class="info-icon">-->
+<!--    <img src="../../assets/info.svg" width="20"/>-->
+<!--  </div>-->
 </div>
 </template>
 
@@ -35,6 +41,7 @@ export default {
 
 <style scoped>
   .each-contact{
+    position: relative;
     border: 1px solid lightslategrey;
     width: 100%;
     align-items: center;
@@ -44,6 +51,7 @@ export default {
     border-top-left-radius: 45px;
     border-bottom-left-radius: 45px;
     background: white;
+    cursor: pointer;
   }
 
   img{
@@ -51,6 +59,23 @@ export default {
     border: 3px solid;
     display: block;
     margin-right: 10px;
+  }
+
+  .item-label{
+    font-weight: bold;
+  }
+
+  .info-icon{
+    position: absolute;
+    right: 0;
+  }
+
+  .item-note{
+    position: absolute;
+    bottom: 0;
+    font-size: 10px;
+    width: 100%;
+    opacity: 0.5;
   }
 
   .female{
